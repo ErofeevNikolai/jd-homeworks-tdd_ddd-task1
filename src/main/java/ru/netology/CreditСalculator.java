@@ -13,16 +13,17 @@ public class CreditСalculator {
 
     //Рассчет месячного платежа
     public double monthlyPayment() {
-        return 0;
+        double interestRateMonth = INTEREST / (12 * 100);
+        return (Math.ceil(CREDIT_SIZE * (interestRateMonth + interestRateMonth / (Math.pow((1 + interestRateMonth), LOAN_PRIOD) - 1))*100)/100);
     }
 
     //Рассчет общей суммы к возврату в банк
     public double amountRefundBank() {
-        return 1;
+        return monthlyPayment()*LOAN_PRIOD;
     }
 
     //Рассчет переплаты за весь период
     public double overpaymentsEntirePeriod() {
-        return 11;
+        return amountRefundBank() - CREDIT_SIZE;
     }
 }
